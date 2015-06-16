@@ -4,7 +4,7 @@ var mongojs = require('mongojs');
 var wreck = require('supertest');
 var server = require('../server');
 var config = require('../config');
-var seed = require('./data/seed.json');
+var seed = require('./data/session.json');
 
 seed._id = mongojs.ObjectId(seed._id);
 

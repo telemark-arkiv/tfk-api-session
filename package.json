@@ -1,7 +1,9 @@
 {
-  "name": "tfk-plugin-seed",
+  "name": "tfk-api-session",
   "version": "1.0.0",
-  "description": "Seed for tfk plug-ins",
+  "description": "Session API for tfk",
+  "license": "MIT",
+  "private": true,
   "author": {
     "name": "Geir Gåsodden",
     "email": "geir.gasodden@pythonia.no",
@@ -21,7 +23,7 @@
     "tfk",
     "API",
     "hapi",
-    "seed"
+    "session"
   ],
   "repository": {
     "type": "git",

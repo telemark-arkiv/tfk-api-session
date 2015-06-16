@@ -4,7 +4,7 @@ var mongojs = require('mongojs');
 var config = require('./config');
 var db = mongojs(config.DB);
 var seeds = db.collection('seeds');
-var seedsDocument = require('./test/data/seed.json');
+var seedsDocument = require('./test/data/session.json');
 var textIndexFields = {
   'name': 'text',
   'address': 'text',
