@@ -8,7 +8,7 @@ var sessionDocument = require('./test/data/session.json');
 var jobsDone = 0;
 var jobsToDo = 2;
 
-sessionDocument.timestamp = new Date().getTime();
+sessionDocument.createdAt = new Date();
 
 function areWeDoneYet() {
   jobsDone++;
@@ -41,11 +41,12 @@ function addDocument(options, callback) {
 
 db.createCollection('session', handleCallback);
 
-session.ensureIndex({'timestamp': 1}, function(error, data){
+session.createIndex({'createdAt': 1}, {'expireAfterSeconds': config.EXPIRE_AFTER_SECONDS}, function(error, data) {
   if (error) {
     console.error(error);
   } else {
-    console.log('Index OK for timestamp');
+    console.log('Index OK for createdAt');
+    console.log('ttl: ' + config.EXPIRE_AFTER_SECONDS);
     console.log(data);
     areWeDoneYet();
   }

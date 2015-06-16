@@ -7,6 +7,8 @@ var db = mongojs(config.DB);
 var session = db.collection('session');
 
 function addSession(request, reply) {
+  var payload = request.payload;
+  payload.createdAt = new Date();
   session.save(request.payload, function(err, data) {
     helpers.handleReply(err, data, request, reply);
   });
