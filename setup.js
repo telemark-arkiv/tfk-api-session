@@ -8,6 +8,8 @@ var sessionDocument = require('./test/data/session.json');
 var jobsDone = 0;
 var jobsToDo = 2;
 
+sessionDocument.timestamp = new Date().getTime();
+
 function areWeDoneYet() {
   jobsDone++;
   if (jobsDone === jobsToDo) {
@@ -38,5 +40,15 @@ function addDocument(options, callback) {
 }
 
 db.createCollection('session', handleCallback);
+
+session.ensureIndex({'timestamp': 1}, function(error, data){
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('Index OK for timestamp');
+    console.log(data);
+    areWeDoneYet();
+  }
+});
 
 addDocument({collection:'session', document:sessionDocument}, handleCallback);
