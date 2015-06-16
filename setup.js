@@ -5,6 +5,16 @@ var config = require('./config');
 var db = mongojs(config.DB);
 var session = db.collection('session');
 var sessionDocument = require('./test/data/session.json');
+var jobsDone = 0;
+var jobsToDo = 2;
+
+function areWeDoneYet() {
+  jobsDone++;
+  if (jobsDone === jobsToDo) {
+    console.log('Everything\'s shiny, Cap\'n. Not to fret.');
+    process.exit(0);
+  }
+}
 
 function handleCallback(error, data) {
   if (error) {
@@ -12,6 +22,7 @@ function handleCallback(error, data) {
   } else {
     console.log(data);
   }
+  areWeDoneYet();
 }
 
 function addDocument(options, callback) {
