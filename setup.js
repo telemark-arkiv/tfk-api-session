@@ -3,15 +3,8 @@
 var mongojs = require('mongojs');
 var config = require('./config');
 var db = mongojs(config.DB);
-var seeds = db.collection('seeds');
-var seedsDocument = require('./test/data/session.json');
-var textIndexFields = {
-  'name': 'text',
-  'address': 'text',
-  'city': 'text'
-};
-
-seedsDocument._id = mongojs.ObjectId(seedsDocument._id);
+var session = db.collection('session');
+var sessionDocument = require('./test/data/session.json');
 
 function handleCallback(error, data) {
   if (error) {
@@ -33,14 +26,6 @@ function addDocument(options, callback) {
   });
 }
 
-db.createCollection('seeds', handleCallback);
+db.createCollection('session', handleCallback);
 
-seeds.ensureIndex(textIndexFields, {"default_language": "nb"}, function(err, data){
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(data)
-  }
-});
-
-addDocument({collection:'seeds', document:seedsDocument}, handleCallback);
+addDocument({collection:'session', document:sessionDocument}, handleCallback);
