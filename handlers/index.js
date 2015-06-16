@@ -15,14 +15,14 @@ function addSession(request, reply) {
 }
 
 function getSession(request, reply) {
-  var id = request.params.seedId;
+  var id = request.params.sessionId;
   session.find({_id: id}, function(err, data) {
     helpers.handleReply(err, data, request, reply);
   });
 }
 
 function deleteSession(request, reply) {
-  var id = request.params.seedId;
+  var id = request.params.sessionId;
   session.remove({_id: id}, function(err, data) {
     helpers.handleReply(err, data, request, reply);
   });
