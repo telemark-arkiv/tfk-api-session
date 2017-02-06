@@ -1,4 +1,6 @@
 # tfk-plugin-seed
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/telemark/tfk-api-session.svg)](https://greenkeeper.io/)
 Seed for creating plug-ins for tfk.
 
 Comes with CRUD routes and handlers and tests.
